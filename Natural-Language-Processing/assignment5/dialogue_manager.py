@@ -2,6 +2,7 @@ import os
 from sklearn.metrics.pairwise import pairwise_distances_argmin
 
 from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 from utils import *
 
 
@@ -60,6 +61,23 @@ class DialogueManager(object):
             trainer='chatterbot.trainers.ChatterBotCorpusTrainer'
         )
         self.chatbot.train("chatterbot.corpus.english")
+        chatterbot.set_trainer(ListTrainer)
+        chatterbot.train([
+            "Hey",
+            "Hello. How do you do?",
+        ])
+        chatterbot.train([
+            "How are you doing?",
+            "I am good!",
+        ])
+        chatterbot.train([
+            "What's your hobby?",
+            "I love soccer.",
+        ])
+        chatterbot.train([
+            "What is AI?",
+            "Me",
+        ])
        
     def generate_answer(self, question):
         """Combines stackoverflow and chitchat parts using intent recognition."""
@@ -86,4 +104,3 @@ class DialogueManager(object):
             thread_id = self.thread_ranker.get_best_thread(prepared_question, tag)
            
             return self.ANSWER_TEMPLATE % (tag, thread_id)
-
