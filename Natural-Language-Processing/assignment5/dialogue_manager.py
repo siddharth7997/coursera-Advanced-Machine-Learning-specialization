@@ -61,20 +61,20 @@ class DialogueManager(object):
             trainer='chatterbot.trainers.ChatterBotCorpusTrainer'
         )
         self.chatbot.train("chatterbot.corpus.english")
-        chatterbot.set_trainer(ListTrainer)
-        chatterbot.train([
+        self.chatbot.set_trainer(ListTrainer)
+        self.chatbot.train([
             "Hey",
             "Hello. How do you do?",
         ])
-        chatterbot.train([
+        self.chatbot.train([
             "How are you doing?",
             "I am good!",
         ])
-        chatterbot.train([
+        self.chatbot.train([
             "What's your hobby?",
             "I love soccer.",
         ])
-        chatterbot.train([
+        self.chatbot.train([
             "What is AI?",
             "Me",
         ])
